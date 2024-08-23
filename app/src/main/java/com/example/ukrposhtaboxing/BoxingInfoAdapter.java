@@ -57,10 +57,16 @@ public class BoxingInfoAdapter extends BaseAdapter {
         double commission = boxingInfo.getCommission();
 
         text1.setText(String.format("Місто | Село: %s - %s", locality, trackingNumber));
-        text2.setText(String.format("Отримувач: %s\nПісля плата: %.2f\nДоставка: %.2f\nПереказ: %.2f\nРазом до оплати: %.2f",
-                name, postpaid, delivery, commission,(postpaid+delivery+commission)));
+        text2.setText(String.format("Отримувач: %s\nПісля плата: %.2f\nДоставка: %.2f\nПереказ: %.2f\nРазом до оплати: %.2f\n%s",
+                name, postpaid, delivery, commission, (postpaid + delivery + commission), boxingInfo.getAdditionalInfo()));
+
+        // Встановлюємо колір фону на основі стану isSelected
+        if (boxingInfo.isSelected()) {
+            convertView.setBackgroundColor(Color.GREEN);
+        } else {
+            convertView.setBackgroundColor(Color.TRANSPARENT);
+        }
 
         return convertView;
     }
-
 }

@@ -7,6 +7,8 @@ public class BoxingInfo {
     private double postpaid;
     private double delivery;
     private double commission;
+    private boolean isSelected = false;
+    private String additionalInfo = ""; // Додатковий опис
 
     public BoxingInfo(String trackingNumber, String locality, String name, double postpaid, double delivery, double commission) {
         this.trackingNumber = trackingNumber;
@@ -15,6 +17,24 @@ public class BoxingInfo {
         this.postpaid = postpaid;
         this.delivery = delivery;
         this.commission = commission;
+    }
+
+    // Геттери і сеттери для всіх полів
+
+    public String getAdditionalInfo() {
+        return additionalInfo;
+    }
+
+    public void setAdditionalInfo(String additionalInfo) {
+        this.additionalInfo = additionalInfo;
+    }
+
+    public boolean isSelected() {
+        return isSelected;
+    }
+
+    public void setSelected(boolean selected) {
+        isSelected = selected;
     }
 
     public String getTrackingNumber() {
@@ -74,6 +94,8 @@ public class BoxingInfo {
                 ", postpaid=" + postpaid +
                 ", delivery=" + delivery +
                 ", commission=" + commission +
+                ", isSelected=" + isSelected +
+                ", additionalInfo='" + additionalInfo + '\'' +
                 '}';
     }
 }
