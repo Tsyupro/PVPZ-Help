@@ -1,5 +1,6 @@
 package com.example.ukrposhtaboxing;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -42,7 +43,10 @@ public class BoxingActivity extends Activity {
     private GestureDetectorCompat gestureDetector;
     private SharedPreferences sharedPreferences;
     private Gson gson;
+    private ArrayList<BoxingInfo> originalBoxingInfoList;
 
+
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,9 +60,13 @@ public class BoxingActivity extends Activity {
         sharedPreferences = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
         gson = new Gson();
 
-        boxingInfoList = loadBoxingInfoList();
+        originalBoxingInfoList = loadBoxingInfoList(); // Завантажуємо повний список
+        boxingInfoList = new ArrayList<>(originalBoxingInfoList); // Копіюємо для фільтрації
         adapter = new BoxingInfoAdapter(this, boxingInfoList);
         listView.setAdapter(adapter);
+
+
+
 
         // Ініціалізація GestureDetector
         GestureListener gestureListener = new GestureListener();
@@ -73,26 +81,23 @@ public class BoxingActivity extends Activity {
             }
         });
         // Обробка подвійного кліку
-        listView.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if (gestureDetector.onTouchEvent(event)) {
-                    int position = listView.pointToPosition((int) event.getX(), (int) event.getY());
-                    if (position != ListView.INVALID_POSITION) {
-                        BoxingInfo boxingInfo = boxingInfoList.get(position);
+        listView.setOnTouchListener((v, event) -> {
+            if (gestureDetector.onTouchEvent(event)) {
+                int position = listView.pointToPosition((int) event.getX(), (int) event.getY());
+                if (position != ListView.INVALID_POSITION) {
+                    BoxingInfo boxingInfo = boxingInfoList.get(position);
 
-                        // Додаємо опис про видачу посилки
-                        String currentDateTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(new Date());
-                        boxingInfo.setAdditionalInfo("Посилка видана: " + currentDateTime);
-                        boxingInfo.setSelected(true); // Помічаємо як видану
+                    // Додаємо опис про видачу посилки
+                    String currentDateTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(new Date());
+                    boxingInfo.setAdditionalInfo("Посилка видана: " + currentDateTime);
+                    boxingInfo.setSelected(true); // Помічаємо як видану
 
-                        adapter.notifyDataSetChanged();
-                        saveBoxingInfoList(); // Зберігаємо дані після зміни
-                    }
-                    return true;
+                    adapter.notifyDataSetChanged();
+                    saveBoxingInfoList(); // Зберігаємо дані після зміни
                 }
-                return false;
+                return true;
             }
+            return false;
         });
 
         // Заповнення списку
@@ -138,7 +143,8 @@ public class BoxingActivity extends Activity {
             double commission = data.getDoubleExtra("commission", 0);
 
             BoxingInfo boxingInfo = new BoxingInfo(trackingNumber, locality, name, postpaid, delivery, commission);
-            boxingInfoList.add(boxingInfo);
+            originalBoxingInfoList.add(0, boxingInfo); // Додаємо до оригінального списку
+            boxingInfoList.add(0, boxingInfo); // Додаємо до поточного списку
             adapter.notifyDataSetChanged();
             saveBoxingInfoList(); // Зберігаємо дані після додавання
         } else if (requestCode == REQUEST_CODE_EDIT && resultCode == RESULT_OK) {
@@ -222,14 +228,18 @@ public class BoxingActivity extends Activity {
 
     private void saveBoxingInfoList() {
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        String json = gson.toJson(boxingInfoList);
+        String json = gson.toJson(originalBoxingInfoList); // Зберігаємо повний список
         editor.putString(KEY_BOXING_INFO_LIST, json);
         editor.apply();
     }
+
+
 
     private ArrayList<BoxingInfo> loadBoxingInfoList() {
         String json = sharedPreferences.getString(KEY_BOXING_INFO_LIST, null);
         Type type = new TypeToken<ArrayList<BoxingInfo>>() {}.getType();
         return json != null ? gson.fromJson(json, type) : new ArrayList<>();
     }
+
+
 }
