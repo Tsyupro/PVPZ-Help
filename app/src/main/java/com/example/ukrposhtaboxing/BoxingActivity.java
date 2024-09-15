@@ -88,7 +88,7 @@ public class BoxingActivity extends Activity {
                     BoxingInfo boxingInfo = boxingInfoList.get(position);
 
                     // Додаємо опис про видачу посилки
-                    String currentDateTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(new Date());
+                    String currentDateTime = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
                     boxingInfo.setAdditionalInfo("Посилка видана: " + currentDateTime);
                     boxingInfo.setSelected(true); // Помічаємо як видану
 

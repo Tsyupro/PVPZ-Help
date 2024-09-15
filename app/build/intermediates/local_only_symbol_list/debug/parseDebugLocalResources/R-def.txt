@@ -5,10 +5,13 @@ color gray
 color ic_launcher_background
 color white
 color yellow
-drawable _23_08_2024
+drawable edittext_background
 drawable generated_image__1__removebg_preview
 drawable ic_launcher_background
 drawable ic_launcher_foreground
+drawable listview_background
+font beermoney
+font inter
 id button
 id button3
 id buttonSave
@@ -19,7 +22,6 @@ id editTextName
 id editTextPostpaid
 id editTextTrackingNumber
 id imageView
-id imageView2
 id item1
 id item2
 id item3
@@ -30,6 +32,8 @@ id searchEditText
 id text1
 id text2
 id text3
+id textView
+id textView2
 layout activity_add_boxing_info
 layout activity_boxing
 layout activity_main
@@ -40,6 +44,8 @@ mipmap ic_launcher_foreground
 mipmap ic_launcher_round
 string add
 string app_name
+string search
+string shipment_search
 string start_work
 style Base.Theme.UkrPoshtaBoxing
 style Theme.UkrPoshtaBoxing

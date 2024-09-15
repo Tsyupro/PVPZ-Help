@@ -7,7 +7,9 @@
     <color name="yellow">#F6B924</color>
     <string name="add">Добавити</string>
     <string name="app_name">ПВПЗ Помічник</string>
-    <string name="start_work">Робота з посилками</string>
+    <string name="search">Пошук</string>
+    <string name="shipment_search">Пошук відправлення</string>
+    <string name="start_work">Почати роботу з відправленнями</string>
     <style name="Base.Theme.UkrPoshtaBoxing" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="android:statusBarColor">@color/yellow</item>
         <item name="android:windowLightStatusBar">false</item>

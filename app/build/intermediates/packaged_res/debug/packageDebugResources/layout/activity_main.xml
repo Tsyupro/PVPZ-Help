@@ -11,15 +11,22 @@
 
     <Button
         android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="392dp"
+        android:layout_width="340dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="632dp"
         android:backgroundTint="@color/yellow"
+        android:gravity="center"
         android:onClick="startNewActivityBoxing"
+        android:paddingLeft="32dp"
+        android:paddingTop="16dp"
+        android:paddingRight="32dp"
+        android:paddingBottom="16dp"
+        android:radius="60dp"
         android:text="@string/start_work"
         android:textColor="@color/black"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -27,22 +34,28 @@
         android:id="@+id/imageView"
         android:layout_width="219dp"
         android:layout_height="235dp"
+        android:layout_marginBottom="116dp"
         app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2"
-        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/generated_image__1__removebg_preview" />
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="217dp"
-        android:layout_height="140dp"
-        android:layout_marginTop="4dp"
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:alpha="0.7"
+        android:fontFamily="@font/beermoney"
+        android:gravity="center"
+        android:padding="16dp"
+        android:text="ПВПЗ\nПОМІЧНИК"
+        android:textColor="@color/black"
+        android:textSize="48sp"
+        app:layout_constraintBottom_toTopOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintHorizontal_bias="0.478"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/_23_08_2024" />
+        app:layout_constraintVertical_bias="0.496" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
