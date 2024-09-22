@@ -58,7 +58,7 @@ public class BoxingInfoAdapter extends BaseAdapter {
                 (boxingInfo.getPostpaid() + boxingInfo.getDelivery() + boxingInfo.getCommission()), boxingInfo.getAdditionalInfo()));
 
         if (boxingInfo.isSelected()) {
-            convertView.setBackgroundColor(Color.GREEN);
+            convertView.setBackgroundColor(Color.parseColor("#b7d5ad"));
         } else {
             convertView.setBackgroundColor(Color.TRANSPARENT);
         }

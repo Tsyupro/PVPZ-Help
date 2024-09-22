@@ -204,6 +204,7 @@ public class BoxingActivity extends Activity {
             startActivityForResult(intent, REQUEST_CODE_EDIT);
             return true;
         } else if (itemId == R.id.item2) {
+            originalBoxingInfoList.remove(info.position); //
             boxingInfoList.remove(info.position);
             adapter.notifyDataSetChanged();
             saveBoxingInfoList(); // Зберігаємо дані після видалення
