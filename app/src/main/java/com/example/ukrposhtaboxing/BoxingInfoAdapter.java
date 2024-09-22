@@ -67,19 +67,24 @@ public class BoxingInfoAdapter extends BaseAdapter {
     }
 
     public void filter(String query) {
-        boxingInfoList.clear();
+        boxingInfoList.clear(); // Очищуємо поточний список
+
+        // Якщо пошуковий запит порожній, повертаємо весь початковий список
         if (query.isEmpty()) {
             boxingInfoList.addAll(originalList);
         } else {
+            // Фільтруємо за введеним запитом
             for (BoxingInfo info : originalList) {
                 if (info.getTrackingNumber().toLowerCase().contains(query.toLowerCase()) ||
                         info.getLocality().toLowerCase().contains(query.toLowerCase()) ||
                         info.getName().toLowerCase().contains(query.toLowerCase())) {
-                    boxingInfoList.add(info);
+                    boxingInfoList.add(info); // Додаємо елементи, що відповідають запиту
                 }
             }
         }
+        // Після кожної зміни оновлюємо адаптер
         notifyDataSetChanged();
     }
+
 }
 

@@ -111,6 +111,7 @@
         android:text="Зберегти"
         android:textColor="@color/black"
         android:backgroundTint="@color/yellow"
+        android:radius="60dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

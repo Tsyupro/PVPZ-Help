@@ -77,7 +77,16 @@ public class BoxingActivity extends Activity {
             @Override
             public void onClick(View v) {
                 String query = searchEditText.getText().toString();
-                adapter.filter(query);
+
+                if (query.isEmpty()) {
+                    // Якщо пошуковий запит порожній, відновлюємо оригінальний список
+                    boxingInfoList.clear();
+                    boxingInfoList.addAll(originalBoxingInfoList); // Повертаємо початковий список
+                } else {
+                    // Інакше фільтруємо за введеним запитом
+                    adapter.filter(query);
+                }
+                adapter.notifyDataSetChanged(); // Оновлюємо список
             }
         });
         // Обробка подвійного кліку
