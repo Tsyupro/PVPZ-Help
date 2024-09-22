@@ -34,6 +34,7 @@ id text2
 id text3
 id textView
 id textView2
+id titleText
 layout activity_add_boxing_info
 layout activity_boxing
 layout activity_main
